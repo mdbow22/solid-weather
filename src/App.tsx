@@ -115,6 +115,7 @@ const App: Component = () => {
           hideHero={hideHero()}
           weather={weather()}
           name={location()?.name}
+          setHideHero={setHideHero}
         />
       </div>
     </div>

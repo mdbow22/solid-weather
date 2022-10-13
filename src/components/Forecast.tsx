@@ -1,4 +1,4 @@
-import { Component, For } from 'solid-js';
+import { Component, For, Setter } from 'solid-js';
 import { ForeCast } from '../forecast.types';
 import { DateTime } from 'luxon';
 
@@ -6,6 +6,7 @@ interface ForecastProps {
     hideHero: boolean;
     weather: ForeCast | undefined;
     name: string | undefined;
+    setHideHero: Setter<boolean>;
 }
 
 const Forecast: Component<ForecastProps> = (props) => {
@@ -14,7 +15,8 @@ const Forecast: Component<ForecastProps> = (props) => {
         class={`hero-content text-center text-neutral-content min-h-screen p-0 transition-all duration-300 delay-150 ${!props.hideHero ? 'translate-y-32 opacity-0' : 'translate-y-0 opacity-100'}`}
       >
         
-        <div class='max-w-md h-full bg-base-100/30 border-t border-l border-white/25 p-5 rounded-2xl flex flex-col justify-center backdrop-blur-md shadow-md'>
+        <div class='relative max-w-md h-full bg-base-100/30 border-t border-l border-white/25 p-5 rounded-2xl flex flex-col justify-center backdrop-blur-md shadow-md'>
+            <div class='absolute top-1 right-5'><a onClick={() => props.setHideHero(false)}>Reset</a></div>
             <div class='font-mono text-left text-xl font-bold'>{props.name}</div>
             <div class='flex justify-between items-center gap-14'>
                 
