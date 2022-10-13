@@ -1,34 +1,23 @@
-## Usage
+# Solid Weather
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+This is a practice app for learning more about SolidJS and Tailwind CSS. A small weather app that will provide current weather and a 7 day forecast based on a city name or US ZIP code. Data is provided by OpenWeather API.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+Tech Stack:
+- Vite
+- SolidJS
+- Tailwind CSS
+- Daity UI
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+This will be an ongoing work in progress to continue learning Tailwind and SolidJS.
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## Use
 
-## Available Scripts
+Currently, users are presented with an initial card with a text input for a city name or US ZIP code along with a submit button and a button to "Use My Location" which makes use of the browser's Geolocation API to retrieve GPS coordinates of the user's device.
 
-In the project directory, you can run:
+After selecting either option, the user is presented with the current weather, today's forecast, and a 7 day future forecast, with data from the OpenWeather API.
 
-### `npm dev` or `npm start`
+## Future Add-ons
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+- Create better transition animations utilizing solid-transition-group.
+- Be able to perform a new search without having to go back to original card.
+- Save and retrieve the last search the user performed in localStorage.
