@@ -3,15 +3,12 @@ import { Component, createEffect, Setter } from 'solid-js';
 interface HeroProps
     {
         getWeather: () => Promise<void>;
+        getPosition: () => void;
         setManualLoc: Setter<string>;
         hideHero: boolean;
       }
 
 const Hero: Component<HeroProps> = (props) => {
-
-    createEffect(() => {
-        props.hideHero
-    })
 
   return (
     
@@ -34,7 +31,7 @@ const Hero: Component<HeroProps> = (props) => {
               <button type='button' class='btn btn-primary' onClick={() => props.getWeather()}>
                 Search
               </button>
-              <button type='button' class='btn btn-outline'>Use My Location</button>
+              <button type='button' class='btn btn-outline' onClick={() => props.getPosition()}>Use My Location</button>
             </div>
           </div>
         </div>

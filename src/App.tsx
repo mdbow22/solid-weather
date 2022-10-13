@@ -15,6 +15,7 @@ const App: Component = () => {
   const [hideHero, setHideHero] = createSignal(false);
 
   createEffect(() => {
+    console.log('trigger');
     const fetchWeather = async (lat: any, lon: any) => {
       const res = await fetch(
         'https://api.openweathermap.org/data/2.5/onecall?lat=' +
@@ -35,7 +36,29 @@ const App: Component = () => {
     }
   });
 
-  const getPosition = () => {};
+  const getPosition = () => {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0,
+    };
+
+    const success = function (pos: any) {
+      const coords = pos.coords;
+      setLocation({
+        name: '',
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+    };
+
+    //What happens if user does not allow location tracking
+    const error = function (err: any) {
+      console.log(err.message);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  };
 
   const getWeather = async () => {
     if (manualLoc()) {
@@ -86,6 +109,7 @@ const App: Component = () => {
           getWeather={getWeather}
           setManualLoc={setManualLoc}
           hideHero={hideHero()}
+          getPosition={getPosition}
         />
         <Forecast
           hideHero={hideHero()}
