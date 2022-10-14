@@ -16,7 +16,7 @@ const Forecast: Component<ForecastProps> = (props) => {
       >
         
         <div class='relative max-w-md h-full bg-base-100/30 border-t border-l border-white/25 p-5 rounded-2xl flex flex-col justify-center backdrop-blur-md shadow-md'>
-            <div class='absolute top-1 right-5'><a onClick={() => props.setHideHero(false)}>Reset</a></div>
+            <div class='absolute top-1 right-5'><a class='cursor-pointer' onClick={() => props.setHideHero(false)}>Reset</a></div>
             <div class='font-mono text-left text-xl font-bold'>{props.name}</div>
             <div class='flex justify-between items-center gap-14'>
                 

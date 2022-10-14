@@ -1,8 +1,9 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal, Show } from 'solid-js';
 import Hero from './components/Hero';
 import { ForeCast } from './forecast.types';
 import heroImage from './assets/hero-image.jpg';
 import Forecast from './components/Forecast';
+import { Transition } from 'solid-transition-group';
 
 const App: Component = () => {
   const [manualLoc, setManualLoc] = createSignal<string>('');
@@ -105,18 +106,46 @@ const App: Component = () => {
         style={{ 'background-image': `url(${heroImage})` }}
       >
         <div class='hero-overlay bg-opacity-70'></div>
-        <Hero
-          getWeather={getWeather}
-          setManualLoc={setManualLoc}
-          hideHero={hideHero()}
-          getPosition={getPosition}
-        />
-        <Forecast
-          hideHero={hideHero()}
-          weather={weather()}
-          name={location()?.name}
-          setHideHero={setHideHero}
-        />
+        <Transition
+          appear
+          onEnter={(el, done) => {
+            const a = el.animate(
+              [
+                { opacity: 0 },
+                { opacity: 1 },
+              ],
+              {
+                duration: 200,
+              }
+            );
+            a.finished.then(done);
+          }}
+          onExit={(el, done) => {
+            const a = el.animate([{ opacity: 1 }, { opacity: 0}], {
+              duration: 200,
+            });
+            a.finished.then(done);
+          }}
+        >
+          <Show
+            when={hideHero()}
+            fallback={
+              <Hero
+                getWeather={getWeather}
+                setManualLoc={setManualLoc}
+                hideHero={hideHero()}
+                getPosition={getPosition}
+              />
+            }
+          >
+            <Forecast
+              hideHero={hideHero()}
+              weather={weather()}
+              name={location()?.name}
+              setHideHero={setHideHero}
+            />
+          </Show>
+        </Transition>
       </div>
     </div>
   );

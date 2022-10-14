@@ -1,4 +1,5 @@
 import { Component, createEffect, Setter } from 'solid-js';
+import { Transition } from 'solid-transition-group';
 
 interface HeroProps
     {
@@ -11,9 +12,9 @@ interface HeroProps
 const Hero: Component<HeroProps> = (props) => {
 
   return (
-    
+      
       <div
-        class={`relative hero-content text-center text-neutral-content min-h-screen p-0 transition-all duration-300 ${props.hideHero ? '-translate-y-32 opacity-0 z-0' : 'translate-y-0 opacity-100 z-20'}`}
+        class={`relative hero-content text-center text-neutral-content min-h-screen p-0 transition-all duration-300`}
       >
         <div class='max-w-md h-full bg-base-100/30 border-t border-l border-white/25 p-10 rounded-2xl flex flex-col justify-center backdrop-blur-md shadow-md'>
           <h1 class='mb-5 text-5xl font-bold'>Solid Weather</h1>
